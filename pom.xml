@@ -1,6 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.demo</groupId>
 	<artifactId>SpringMaven</artifactId>
@@ -12,18 +11,93 @@
 		<jdk.version>1.8</jdk.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<!-- <spring.version>3.2.2.RELEASE</spring.version> -->
 		<spring.version>4.1.6.RELEASE</spring.version>
 		<spring.batch.version>2.2.0.RELEASE</spring.batch.version>
-		<!-- <mysql.driver.version>8.0.28</mysql.driver.version> -->
-		<!-- <oracle.jdbc.version>12.2.0.1</oracle.jdbc.version> -->
-		<!-- <slf4j.version>1.6.6</slf4j.version> -->
-		<!-- <logback.version>1.0.7</logback.version> -->
+		<oracle.jdbc.version>12.2.0.1</oracle.jdbc.version>
 	</properties>
+	
+	<dependencies>
 
+		<!-- Spring Core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Spring Jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Spring XML to/back object -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Spring Batch dependencies -->
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-core</artifactId>
+			<version>${spring.batch.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-infrastructure</artifactId>
+			<version>${spring.batch.version}</version>
+		</dependency>
+		    	
+		<!-- Oracle database driver -->
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>${oracle.jdbc.version}</version>
+		</dependency>
+		<!--End Oracle database driver -->
+		
+		<!-- to use joda-time in our java classes -->
+		<dependency>
+		    <groupId>joda-time</groupId>
+		    <artifactId>joda-time</artifactId>
+		    <version>2.10.8</version>
+		</dependency>
+        
+        <dependency>
+    		<groupId>org.springframework.integration</groupId>
+    		<artifactId>spring-integration-test</artifactId>
+    		<!-- <version>4.3.0.RELEASE</version> -->
+    		<version>${spring.version}</version>
+    		<scope>test</scope>
+		</dependency>
+         
+        <!--Start: for dozer mapping -->
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.5.1</version>
+		</dependency>
+		<!--End: for dozer mapping -->
+		
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io 
+		for FileUtils,IOUtils,forceMkdir issues
+		-->
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.6</version>
+		</dependency>        
+
+	</dependencies>
+	
 	<build>
 		<finalName>spring-batch</finalName>
 		<plugins>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -33,8 +107,20 @@
 					<target>${jdk.version}</target>
 				</configuration>
 			</plugin>
-		</plugins>		
+		</plugins>
+		
 	</build>
+	
+	<!-- `mvn clean test site` to generate the junit html report-->
+	<reporting>
+    	<plugins>
+      		<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.19.1</version>
+      		</plugin>
+    	</plugins>
+	</reporting>
 
 
 </project>
