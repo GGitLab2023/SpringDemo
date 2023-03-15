@@ -31,7 +31,7 @@
 	
 	 <!-- here we created second instance of our HelloWorldTasklet class,  -->
 	<bean  id="createdByTasklet" class="com.spring.tasklet.HelloWorldTasklet">
-		<property name="message" value="Created By Gaurav On SpringBatch" />
+		<property name="message" value="Created By tejas On SpringBatch" />
 	</bean>
 	
 </beans>
