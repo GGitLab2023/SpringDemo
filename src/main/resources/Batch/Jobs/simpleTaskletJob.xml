@@ -5,10 +5,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/batch
         http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
-        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans  
         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
     ">
-
 	<import resource="classpath:batch/BatchConfig/BatchAppContext.xml" />
 	
 	<!-- defining a Job -->
@@ -17,21 +16,24 @@
         <batch:step id="step1" allow-start-if-complete="true" next="step2">
             <tasklet ref="helloTasklet" />
         </batch:step>
-        
-        <batch:step id="step2" allow-start-if-complete="true">
+        <batch:step id="step2" allow-start-if-complete="true" next="step3">
             <tasklet ref="createdByTasklet" />
         </batch:step>
-        
+        <batch:step id="step3" allow-start-if-complete="true">
+            <tasklet ref="createdBySecondTasklet" />
+        </batch:step>
     </batch:job>
-	
 	 <!-- defining a bean as "helloTasklet" and here we created first instance of our HelloWorldTasklet class  -->
 	<bean  id="helloTasklet" class="com.spring.tasklet.HelloWorldTasklet">
 		<property name="message" value="Hello World!" />
 	</bean>
-	
-	 <!-- here we created second instance of our HelloWorldTasklet class,  -->
+	 <!-- here we ]\created second instance of our HelloWorldTasklet class,  -->
 	<bean  id="createdByTasklet" class="com.spring.tasklet.HelloWorldTasklet">
 		<property name="message" value="Created By tejas On SpringBatch" />
+	</bean>
+	 <!-- here we ]\created third instance of our HelloWorldTasklet class,  -->
+	<bean  id="createdBySecondTasklet" class="com.spring.tasklet.HelloWorldTasklet">
+		<property name="message" value="Created By tejas borse On SpringBatch" />
 	</bean>
 	
 </beans>
