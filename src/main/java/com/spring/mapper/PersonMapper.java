@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 
 import org.joda.time.LocalDate;
 import org.springframework.jdbc.core.RowMapper;
-import com.spring.databean.Person;
+import com.spring.dataBean.Person;
 
 /*this class simply maps the attribute in the Person.java class with the fields read from database table "PERSON_DETAILS"*/
 public class PersonMapper implements RowMapper<Person>{

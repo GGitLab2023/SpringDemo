@@ -82,7 +82,8 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "PersonResult [FirstName=" + firstName + ", LastName=" + lastName + ", SchoolName=" + schoolName
+		return "PersonResult [My Name is " + firstName + lastName +  
+				", SchoolName=" + schoolName
 				+ ", RollNumber=" + rollNumber + ", SignUpDate=" + signUpDateAsString + "]";
 	}
 

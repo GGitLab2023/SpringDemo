@@ -11,7 +11,7 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.spring.databean.Person;
+import com.spring.dataBean.Person;
 import com.spring.mapper.PersonMapper;
 
 /*this tasklet class is executed from our job(person-job.xml). it just reads from database table and prints out the statement*/
