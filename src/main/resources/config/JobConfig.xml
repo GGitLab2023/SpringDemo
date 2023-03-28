@@ -10,8 +10,8 @@
        
    <import resource="classpath:Batch/Jobs/context.xml" />
    
-   <bean id = "emp" class = "Employee" scope = "prototype" /> 
-   <bean id = "itemProcessor" class = "com.ItemProcessor.CustomItemProcessor" />  
+   <!--<bean id = "emp" class = "Employee" scope = "prototype" /> -->
+   
    
    <batch:job id = "employeeJob"> 
       <batch:step id = "step1"> 
@@ -20,9 +20,15 @@
                writer = "csvFileItemWriter" processor = "itemProcessor" 
                commit-interval = "10"> 
             </batch:chunk> 
+             <batch:listeners>
+              <!--  <batch:listener ref="readListener" />-->
+                <batch:listener ref="writeListener" />
+            </batch:listeners>
          </batch:tasklet> 
       </batch:step> 
    </batch:job> 
+   
+
          
    <bean id = "dbItemReader" 
       class = "org.springframework.batch.item.database.JdbcCursorItemReader" > 
@@ -33,11 +39,17 @@
       </property> 
    </bean>
    
+   <bean id = "itemProcessor" class = "com.ItemProcessor.CustomItemProcessor" />  
+   
    <bean id = "csvFileItemWriter" 
       class = " org.springframework.batch.item.file.FlatFileItemWriter">      
-      <property name = "resource" value = "file:generatedFiles/emp.csv"/> 
+      <property name = "resource" value = "file:generatedFiles/emep.txt"/> 
       <property name = "lineAggregator"> 
          <bean class = " org.springframework.batch.item.file.transform.PassThroughLineAggregator"/> 
       </property> 
-   </bean> 
+   </bean>
+   <!--<bean id="readListener" class="com.Listeners.ReadListener" /> -->
+    <bean id="writeListener" class="com.Listeners.WriteListener" > 
+     <property name = "dataSource" ref = "dataSource" /> 
+   </bean>
 </beans> 

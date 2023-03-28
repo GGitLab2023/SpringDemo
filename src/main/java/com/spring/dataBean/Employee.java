@@ -2,8 +2,7 @@ package com.spring.dataBean;
 
 public class Employee {
 	private String empName, empAddress;
-	private int empId, empSal;
-	
+	private int empId, empSal, status;
 
 	public String getEmpName() {
 		return empName;
@@ -25,6 +24,14 @@ public class Employee {
 		return empId;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	public void setEmpId(int empId) {
 		this.empId = empId;
 	}
@@ -39,11 +46,8 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee Information [My Name is " + empName  + " , My address is " + empAddress + " , My employee Id is " + empId + " and My salary is " + empSal
-				+ "]";
+		return "Employee [empName=" + empName + ", empAddress=" + empAddress + ", empId=" + empId + ", empSal=" + empSal
+				+ ", status=" + status + "]";
 	}
-
-	
-
 
 }
